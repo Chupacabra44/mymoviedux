@@ -38,7 +38,39 @@ body {
   padding: 1rem;
 
   &__text {
-    margin-top: 100px;
     text-align: center;
+  }
+}
+
+.movie {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  &__card {
+    flex: 0 0 calc(25% - 0.75rem);
+    max-width: calc(25% - 0.75rem);
+    box-sizing: border-box;
+    background-color: #272727;
+    border-radius: 12px;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &__title {
+    padding: 20px;
   }
 }
