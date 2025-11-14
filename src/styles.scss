@@ -7,7 +7,7 @@
 
 /* Typography */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #fff;
   background-color: #121212;
 }
@@ -22,9 +22,8 @@ body {
   margin-top: 50px;
 
   &__logo {
-  width: 100%;
-  max-width: 920px;
-
+    width: 100%;
+    max-width: 920px;
   }
 
   &__text {
@@ -57,26 +56,35 @@ body {
     background-color: #272727;
     border-radius: 12px;
 
-  &:hover {
-    transform: scale(1.03);
-  }
+    &:hover {
+      transform: scale(1.03);
+    }
 
-  &-info {
-    margin: 15px 0;
-  }
+    &-info {
+      margin: 15px 0;
+    }
 
-  &-genre {
-    padding: 10px;
-  }
+    &-genre {
+      padding: 10px;
+    }
 
-  &-rating {
-    background-color: #141414;
-    border-radius: 50px;
-    margin: 0 auto;
-    font-size: 0.9rem;
-    padding: 3px 10px;
-    width: 50px;
-  }
+    &-rating {
+      background-color: #141414;
+      border-radius: 50px;
+      margin: 0 auto;
+      font-size: 0.9rem;
+      padding: 3px 10px;
+      width: 50px;
+      &--good {
+        color: greenyellow;
+      }
+      &--ok {
+        color: orange;
+      }
+      &--bad {
+        color: red;
+      }
+    }
   }
 
   &__image {
