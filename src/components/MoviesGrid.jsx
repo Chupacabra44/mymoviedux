@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import MovieCard from "./MovieCard";
 
 const MoviesGrid = () => {
   const [movies, setMovies] = useState([]);
@@ -20,18 +21,7 @@ const MoviesGrid = () => {
     <div className="container">
       <div className="movie__container">
         {movies.map((movie) => (
-          <div key={movie.id} className="movie__card">
-            <img
-              className="movie__image"
-              src={`/images/${movie.image}`}
-              alt={movie.title}
-            />
-            <div className="movie__card-info">
-              <h3 className="movie__card-title">{movie.title}</h3>
-              <p className="movie__card-genre">{movie.genre}</p>
-              <p className="movie__card-rating">{movie.rating}</p>
-            </div>
-          </div>
+          <MovieCard key={movie.id} movie={movie} />
         ))}
       </div>
     </div>
