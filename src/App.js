@@ -1,14 +1,12 @@
 import "./styles.scss";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <div className="container">
-      <header className="header">
-        <h1>Welcome to Moviedux</h1>
-      </header>
-      <footer className="footer">
-        <p className="footer__text">Footer content here</p>
-      </footer>
+      <Header />
+      <Footer />
     </div>
   );
 }

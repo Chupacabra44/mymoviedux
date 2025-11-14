@@ -20,6 +20,16 @@ body {
 
 .header {
   margin-top: 50px;
+
+  &__logo {
+  width: 100%;
+  max-width: 920px;
+
+  }
+
+  &__text {
+    font-weight: 300;
+  }
 }
 
 .footer {
@@ -29,5 +39,6 @@ body {
 
   &__text {
     margin-top: 100px;
+    text-align: center;
   }
 }
