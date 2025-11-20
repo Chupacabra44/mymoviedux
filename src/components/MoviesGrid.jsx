@@ -4,6 +4,8 @@ import MovieCard from "./MovieCard";
 const MoviesGrid = () => {
   const [movies, setMovies] = useState([]);
   const [searchMovie, setSearchMovie] = useState("");
+  const [genre, setGenre] = useState("All Genres");
+  const [rating, setRating] = useState("All");
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -22,10 +24,45 @@ const MoviesGrid = () => {
     setSearchMovie(event.target.value);
   };
 
+  const handleGenre = (event) => {
+    setGenre(event.target.value);
+  };
+
+  const handleRating = (event) => {
+    setRating(event.target.value);
+  };
+
+  const matchesGenre = (movie, genre) => {
+    return (
+      genre === "All Genres" ||
+      movie.genre.toLowerCase() === genre.toLowerCase()
+    );
+  };
+
+  const matchesSearch = (movie, searchMovie) => {
+    return movie.title.toLowerCase().includes(searchMovie.toLowerCase());
+  };
+
+  const matchesRating = (movie, rating) => {
+    switch (rating) {
+      case "All":
+        return true;
+      case "Good":
+        return movie.rating >= 8;
+      case "Ok":
+        return movie.rating >= 5 && movie.rating < 8;
+      case "Bad":
+        return movie.rating < 5;
+      default:
+        return false;
+    }
+  };
+
   const filteredMovie = movies.filter(
     (movie) =>
-      movie.title.toLowerCase().includes(searchMovie) ||
-      movie.genre.toLowerCase().includes(searchMovie)
+      matchesGenre(movie, genre) &&
+      matchesSearch(movie, searchMovie) &&
+      matchesRating(movie, rating)
   );
 
   return (
@@ -37,6 +74,27 @@ const MoviesGrid = () => {
         placeholder="Search movies ..."
         value={searchMovie}
       />
+      <div className="filter">
+        <div className="filter__slot">
+          <label className="filter__label">Genre</label>
+          <select value={genre} onChange={handleGenre}>
+            <option>All Genres</option>
+            <option>Action</option>
+            <option>Drama</option>
+            <option>Fantasy</option>
+            <option>Horror</option>
+          </select>
+        </div>
+        <div className="filter__slot">
+          <label className="filter__label">Rating</label>
+          <select value={rating} onChange={handleRating}>
+            <option>All</option>
+            <option>Good</option>
+            <option>Ok</option>
+            <option>Bad</option>
+          </select>
+        </div>
+      </div>
       <div className="movie__container">
         {filteredMovie.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
