@@ -8,6 +8,7 @@ import { Routes, Route, BrowserRouter, Link } from "react-router-dom";
 
 function App() {
   const [movies, setMovies] = useState([]);
+  const [watchlist, setWatchlist] = useState([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -21,6 +22,14 @@ function App() {
     };
     fetchMovies();
   }, []);
+
+  const toggleWatchlist = (movieId) => {
+    setWatchlist((prev) => {
+      return prev.includes(movieId)
+        ? prev.filter((id) => id !== movieId)
+        : [...prev, movieId];
+    });
+  };
 
   return (
     <>
@@ -38,8 +47,26 @@ function App() {
             </ul>
           </nav>
           <Routes>
-            <Route path="/" element={<MoviesGrid movies={movies} />} />
-            <Route path="/watchlist" element={<WatchList />} />
+            <Route
+              path="/"
+              element={
+                <MoviesGrid
+                  watchlist={watchlist}
+                  movies={movies}
+                  toggleWatchlist={toggleWatchlist}
+                />
+              }
+            />
+            <Route
+              path="/watchlist"
+              element={
+                <WatchList
+                  watchlist={watchlist}
+                  movies={movies}
+                  toggleWatchlist={toggleWatchlist}
+                />
+              }
+            />
           </Routes>
         </div>
         <Footer />

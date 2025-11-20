@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MovieCard from "./MovieCard";
 
-const MoviesGrid = ({ movies }) => {
+const MoviesGrid = ({ movies, watchlist, toggleWatchlist }) => {
   const [searchMovie, setSearchMovie] = useState("");
   const [genre, setGenre] = useState("All Genres");
   const [rating, setRating] = useState("All");
@@ -83,7 +83,12 @@ const MoviesGrid = ({ movies }) => {
       </div>
       <div className="movie__container">
         {filteredMovie.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} />
+          <MovieCard
+            movie={movie}
+            key={movie.id}
+            toggleWatchlist={toggleWatchlist}
+            isWatchlisted={watchlist.includes(movie.id)}
+          />
         ))}
       </div>
     </div>

@@ -1,4 +1,4 @@
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, isWatchlisted, toggleWatchlist }) => {
   const handleError = (event) => {
     event.target.src = "images/default.jpg";
   };
@@ -23,10 +23,26 @@ const MovieCard = ({ movie }) => {
       />
       <div className="movie__card-info">
         <h3 className="movie__card-title">{movie.title}</h3>
-        <p className="movie__card-genre">{movie.genre}</p>
-        <p className={`movie__card-rating ${getRatingClass(movie.rating)}`}>
-          {movie.rating}
-        </p>
+        <div className="watchlist">
+          <span className="movie__card-genre">{movie.genre}</span>
+          <span
+            className={`movie__card-rating ${getRatingClass(movie.rating)}`}
+          >
+            {movie.rating}
+          </span>
+        </div>
+        <label>
+          <input
+            type="checkbox"
+            checked={isWatchlisted}
+            onChange={() => toggleWatchlist(movie.id)}
+          />
+          <span>
+            <span className="watchlist">
+              {isWatchlisted ? "In Watchlist" : "Add to Watchlist"}
+            </span>
+          </span>
+        </label>
       </div>
     </div>
   );
