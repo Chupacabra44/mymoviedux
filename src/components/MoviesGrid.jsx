@@ -1,24 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import MovieCard from "./MovieCard";
 
-const MoviesGrid = () => {
-  const [movies, setMovies] = useState([]);
+const MoviesGrid = ({ movies }) => {
   const [searchMovie, setSearchMovie] = useState("");
   const [genre, setGenre] = useState("All Genres");
   const [rating, setRating] = useState("All");
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch("movies.json");
-        const data = await response.json();
-        setMovies(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchMovies();
-  }, []);
 
   const handleSearch = (event) => {
     setSearchMovie(event.target.value);
